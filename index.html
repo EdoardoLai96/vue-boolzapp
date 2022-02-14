@@ -10,22 +10,23 @@
 </head>
 <body>
     <div id="app">
-        <header>
+            <div class="prova_uno">
 
-        </header>
-        <main>
+            </div>
             <div class="container">
 
                 <!-- Container di sinistra  -->
 
                 <div class="container_sx">
                     <!-- Container di sinistra parte alta spazio utente  -->
-                    <div class="container-sx_header_top">
+                    <div class="container-sx_header_top card">
                         <div class="user_box">
                             <div class="img_box">
                                 <img src="./img/avatar_io.jpg" alt="">
                             </div>
-                            <p>Nome Utente</p>
+                            <div class="text_box">
+                                <p>Nome Utente</p>
+                            </div>
                         </div>
                         <div class="icon_box">
                             <i class="fa-solid fa-circle-notch"></i>
@@ -49,21 +50,23 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" name="" id="search_chat"> 
                         </div>
+
+                        <!-- Elenco chat  -->
                         <div class="chat_list_container">
-                            <ul>
-                                <li class="user_box">
-                                        <div class="img_box">
-                                            <img src="./img/avatar_io.jpg" alt="">
-                                        </div>
-                                        <div class="text_box">
-                                            <p>Nome Utente</p>
-                                            <p>Messaggio</p>
-                                        </div>
-                                </li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
+
+                            <!-- prima chat  -->
+
+                            <div v-for="(contact, index) in contacts" class="card chat_item">
+                                <div class="user_box">
+                                    <div class="img_box">
+                                        <img v-bind:src="'./img/avatar' + contacts[index].avatar + '.jpg'" />
+                                    </div>
+                                    <div class="text_box">
+                                        <p>{{contacts[index].name}}</p>
+                                        <p>{{contacts[index].messages[2].text}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,16 +74,38 @@
                 <!-- Container di destra  -->
                 <div class="container_dx">
                     <!-- Container di destra intestazione  -->
-                    <div class="container-dx_top"></div>
+                    <div class="container-dx_top card">
+                        <div class="user_box">
+                            <div class="img_box">
+                                <img src="./img/avatar_io.jpg" alt="">
+                            </div>
+                            <div class="text_box">
+                                <p>Nome Utente</p>
+                                <p>Messaggio</p>
+                            </div>
+                        </div>
+                            <div class="icon_box">
+                                <i class="fa-solid fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-message"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+    
+
+                    </div>
                     <!-- Container di detra spazio della chat principale-->
-                    <div class="container-dx_main"></div>
+                    <div class="container-dx_main">
+                            <p v-for="(contact , index) in contacts" class="msg user">{{contacts[index].messages.text}}</p>
+                    </div>
 
                     <!-- Container di destra chat bar e input dove scrivere il testo  -->
-                    <div class="container-dx_bottom"></div>
+                    <div class="container-dx_bottom">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text">
+                        <i class="fa-solid fa-microphone"></i> 
+                    </div>
  
                 </div>
             </div>
-        </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="main.js"></script>

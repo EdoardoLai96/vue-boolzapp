@@ -19,26 +19,80 @@ ul{
 
 #app{
     height: 100vh;
-    background-color: var(--secondary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+    background-color: #D8DBD8;
+    min-height: 1140px;
 }
+
+/* CARD  */
+
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card .user_box{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.card .img_box{
+    height: 100%;
+    overflow: hidden;
+}
+.card .img_box img{
+    height: 100%;
+    transform: scale(0.8);
+    border-radius: 50%;
+}
+
+.card .icon_box{
+    width: min-content;
+    display: flex;
+    padding-right: 2px;
+}
+
+.card .icon_box i{
+    margin: 0 7px;
+}
+
+.card .text_box{
+  height: 100%;
+  padding: 5px 3px;
+}
+
+.card .text_box p:first-child{
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.card .text_box p:nth-child(2){
+    color: gray;
+}
+
+.prova_uno{
+    height: 100px;
+    width: 100%;
+    min-width: 1100px;
+    background-color: var(--header-color);
+}
+
 
 /* Contenitore principale  */
 
 .container{
-    min-width: 900px;
-    width: 80%;
+    max-width: 1100px;
     height: 800px;
     background-color: var(--main-color);
     display: flex;
+    margin: auto;
+    transform: translateY(-60px);
+
 }
 
-/* common  */
 .container_sx, .container_dx{
-    border: 1px solid black;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -53,49 +107,34 @@ ul{
 /* parte in alto della parte sinistra del container  */
 
 .container-sx_header_top{
-    border: 1px solid black;
     min-height: 10%;
     height: 10%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: var(--secondary-color);
+    border-right: 1px solid rgba(105, 105, 105, 0.2);
 
 }
 
 /* Area utente parte altra a sinistra  */
-.container-sx_header_top .user_box{
-    height: 100%;
-    display: flex;
-    align-items: center;
+
+
+
+.container-sx_header_top.card .text_box{
+  height: auto;
+  padding: 5px 3px;
 }
 
-.container-sx_header_top .img_box{
-    height: 100%;
-    overflow: hidden;
+.container-sx_header_top.card .icon_box{
+    font-size: 1.3rem;
+    color: gray;
+    margin-right: 10px;
 }
-.container-sx_header_top .img_box img{
-    height: 100%;
-    transform: scale(0.8);
-    border-radius: 50%;
-}
-
-.container-sx_header_top .icon_box{
-    width: min-content;
-    display: flex;
-    padding-right: 2px;
-}
-
-.container-sx_header_top .icon_box i{
-    margin: 0 7px;
-}
-
-
-
 /* Spazio notifiche parte alta a sinistra  */
 
 .container-sx_header_bottom{
-    border: 1px solid black;
     height: 12%;
     width: 100%;
     background-color: var(--notification-color);
@@ -119,7 +158,6 @@ color:rgb(105, 105, 105);
 }
 
 .container-sx_main{
-    border: 1px solid black;
     height: 78%;
     width: 100%;
 }
@@ -153,62 +191,99 @@ background-color: var(--secondary-color);
     border: 0;
 }
 
+
 .chat_list_container{
     background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-
-li.user_box{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+.card.chat_item{
+    height: 100px;
+    background-color: white;
+    border-bottom: 1px solid rgba(105, 105, 105, 0.2);
 }
 
-li .img_box{
-    overflow: hidden;
-    width: 20%;
-}
-
-li .img_box img{
-    transform: scale(0.8);
-    border-radius: 50%;
-    max-width: 100%;
-}
-
-li .text_box{
-    width: 70%;
-}
-
-.text_box p:first-child{
-    font-size: 1.2rem;
-}
-
-.text_box p:last-child{
-    color: gray;
-}
 
 /* Parte destra contenitore  */
 
+
+/* Intestazione parte destra contenitore  */
 .container_dx{
     width: 60%;
 }
 
 .container-dx_top{
-    border: 1px solid black;
     height: 10%;
     width: 100%;
+    background-color: var(--secondary-color);
 }
+
+.container-dx_top .icon_box{
+    display: flex;
+    justify-content: space-evenly;
+    width: 20%;
+    font-size: 1.2rem;
+    color: gray;
+}
+
+
+.container-dx_top .icon_box .fa-magnifying-glass{
+    background-color: transparent;
+}
+
+/* Spazio chat principale  */
 
 .container-dx_main{
-    border: 1px solid black;
     height: 82%;
     width: 100%;
+    background-image: url(./img/mine.jpg);
+    padding: 30px 30px;
+}
+
+.msg{
+    background-color: ghostwhite;
+}
+
+.msg{
+    padding: 20px 30px;
+    width: min-content;
+    white-space: nowrap;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.msg.user{
+    background-color: var(--user-color);
+    margin-left: auto;
 
 }
+.msg.com{
+    margin-right: auto;
+
+}
+
+/* barra con input per la chat e emoji / microfono */
+
+
+
 
 .container-dx_bottom{
-    border: 1px solid black;
     height: 8%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding:  10px 0;
+    background-color: var(--input_bar-color);
 }
 
+.container-dx_bottom input{
+    width: 80%;
+    height: 100%;
+}
+
+.container-dx_bottom i{
+    font-size: 1.2rem;
+    color: grey;
+}
