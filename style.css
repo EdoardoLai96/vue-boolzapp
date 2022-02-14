@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-color: #fff;
+    --secondary-color: #EAEAEA;
+    --user-color: #DDF8C0;
+    --notification-color: #9FD8F8;
+    --header-color: #479388;
+    --input_bar-color: #F3EEEA;
+}
+
+#app{
+    height: 100vh;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Contenitore principale  */
+
+.container{
+    min-width: 900px;
+    width: 80%;
+    height: 800px;
+    background-color: var(--main-color);
+    display: flex;
+}
+
+/* common  */
+.container_sx, .container_dx{
+    border: 1px solid black;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Parte sinistra contenitore  */
+
+.container_sx{
+    width: 40%;
+}
+
+/* parte in alto della parte sinistra del container  */
+
+.container-sx_header_top{
+    border: 1px solid black;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.container-sx_header_top .user_box{
+    border: 1px solid black;
+    height: 100%;
+    width: 45%;
+
+}
+
+.container-sx_header_top .icon_box{
+    border: 1px solid black;
+    height: 100%;
+    width: 45%;
+
+}
+
+
+.container-sx_header_bottom{
+    border: 1px solid black;
+    height: 12%;
+    width: 100%;
+    background-color: var(--notification-color);
+}
+
+.container-sx_main{
+    border: 1px solid black;
+    height: 78%;
+    width: 100%;
+}
+
+/* Parte destra contenitore  */
+
+.container_dx{
+    width: 60%;
+}
+
+.container-dx_top{
+    border: 1px solid black;
+    height: 10%;
+    width: 100%;
+}
+
+.container-dx_main{
+    border: 1px solid black;
+    height: 82%;
+    width: 100%;
+
+}
+
+.container-dx_bottom{
+    border: 1px solid black;
+    height: 8%;
+    width: 100%;
+}
+
