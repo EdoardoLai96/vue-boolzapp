@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Boolzap</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div id="app">
@@ -14,21 +15,67 @@
         </header>
         <main>
             <div class="container">
+
+                <!-- Container di sinistra  -->
+
                 <div class="container_sx">
+                    <!-- Container di sinistra parte alta spazio utente  -->
                     <div class="container-sx_header_top">
                         <div class="user_box">
-                            
+                            <div class="img_box">
+                                <img src="./img/avatar_io.jpg" alt="">
+                            </div>
+                            <p>Nome Utente</p>
                         </div>
                         <div class="icon_box">
-
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
-                    <div class="container-sx_header_bottom"></div>
-                    <div class="container-sx_main"></div>
+
+                    <!-- Container di sinistra parte alta spazio notifiche  -->
+                    <div class="container-sx_header_bottom">
+                            <i class="fa-solid fa-bell-slash"></i>
+                            <div class="notification_box">
+                                <p>Ricevi notifiche di nuovi messaggi</p>
+                                <a href="">Attiva notifiche desktop </a> 
+                            </div>
+                    </div>
+
+                    <!-- Contaienr sinistra spazio elenco chat  -->
+                    <div class="container-sx_main">
+                        <div class="input_container">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" name="" id="search_chat"> 
+                        </div>
+                        <div class="chat_list_container">
+                            <ul>
+                                <li class="user_box">
+                                        <div class="img_box">
+                                            <img src="./img/avatar_io.jpg" alt="">
+                                        </div>
+                                        <div class="text_box">
+                                            <p>Nome Utente</p>
+                                            <p>Messaggio</p>
+                                        </div>
+                                </li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Container di destra  -->
                 <div class="container_dx">
+                    <!-- Container di destra intestazione  -->
                     <div class="container-dx_top"></div>
+                    <!-- Container di detra spazio della chat principale-->
                     <div class="container-dx_main"></div>
+
+                    <!-- Container di destra chat bar e input dove scrivere il testo  -->
                     <div class="container-dx_bottom"></div>
  
                 </div>

@@ -4,11 +4,15 @@
     box-sizing: border-box;
 }
 
+ul{
+    list-style: none;
+}
+
 :root{
     --main-color: #fff;
     --secondary-color: #EAEAEA;
     --user-color: #DDF8C0;
-    --notification-color: #9FD8F8;
+    --notification-color: #87ccf5;
     --header-color: #479388;
     --input_bar-color: #F3EEEA;
 }
@@ -50,39 +54,137 @@
 
 .container-sx_header_top{
     border: 1px solid black;
+    min-height: 10%;
     height: 10%;
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
 }
 
+/* Area utente parte altra a sinistra  */
 .container-sx_header_top .user_box{
-    border: 1px solid black;
     height: 100%;
-    width: 45%;
+    display: flex;
+    align-items: center;
+}
 
+.container-sx_header_top .img_box{
+    height: 100%;
+    overflow: hidden;
+}
+.container-sx_header_top .img_box img{
+    height: 100%;
+    transform: scale(0.8);
+    border-radius: 50%;
 }
 
 .container-sx_header_top .icon_box{
-    border: 1px solid black;
-    height: 100%;
-    width: 45%;
-
+    width: min-content;
+    display: flex;
+    padding-right: 2px;
 }
 
+.container-sx_header_top .icon_box i{
+    margin: 0 7px;
+}
+
+
+
+/* Spazio notifiche parte alta a sinistra  */
 
 .container-sx_header_bottom{
     border: 1px solid black;
     height: 12%;
     width: 100%;
     background-color: var(--notification-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fa-bell-slash{
+    float: left;
+    font-size: 22px;
+    margin-right: 15px;
+    border-radius: 50%;
+    padding: 13px 10px;
+    color: var(--notification-color);
+    background-color: white;
+}
+
+.notification_box a{
+color:rgb(105, 105, 105);
 }
 
 .container-sx_main{
     border: 1px solid black;
     height: 78%;
     width: 100%;
+}
+
+/* List delle chat  */
+
+.container-sx_main{
+background-color: var(--secondary-color);
+}
+
+
+.input_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    background-color: white;
+    border: 10px solid var(--secondary-color);
+}
+
+.fa-magnifying-glass{
+    width: 10%;
+    text-align: center;
+    background-color: white;
+    vertical-align: middle;
+}
+
+#search_chat{
+    width: 90%;
+    height: 30px;
+    border: 0;
+}
+
+.chat_list_container{
+    background-color: white;
+}
+
+
+li.user_box{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+li .img_box{
+    overflow: hidden;
+    width: 20%;
+}
+
+li .img_box img{
+    transform: scale(0.8);
+    border-radius: 50%;
+    max-width: 100%;
+}
+
+li .text_box{
+    width: 70%;
+}
+
+.text_box p:first-child{
+    font-size: 1.2rem;
+}
+
+.text_box p:last-child{
+    color: gray;
 }
 
 /* Parte destra contenitore  */
