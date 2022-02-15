@@ -1,6 +1,9 @@
 const app = new Vue({
     el: '#app',
     data :{
+        clock : "",
+        active : 0,
+        newMessage: "",
         contacts: [
             {
                 name: 'Michele',
@@ -37,12 +40,12 @@ const app = new Vue({
                     {
                         date: '20/03/2020 16:30:55',
                         text: 'Bene grazie! Stasera ci vediamo?',
-                        status: 'sent'
+                        status: 'received'
                     },
                     {
                         date: '20/03/2020 16:35:00',
                         text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                        status: 'received'                    
+                        status: 'sent'                    
                     }
                 ]
             },
@@ -54,7 +57,7 @@ const app = new Vue({
                     {
                         date: '28/03/2020 10:10:40',
                         text: 'La Marianna va in campagna',
-                        status: 'sent'
+                        status: 'received'
                     },
                     {
                         date: '28/03/2020 10:20:10',
@@ -85,14 +88,48 @@ const app = new Vue({
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        text: 'Si, ma preferirei andare al cinema',
-                        status: 'received'
+                        text: 'Va bene, alla prossima allora!',
+                        status: 'sent'
                     }
                 ]
             },
         ],
-        methods: {
+    },
+    methods: {
+        makeActive(index){
+            console.log(this.active)
+            this.active = index
+            console.log(this.active)
+        },
+        onKeyEnterUp(active){
+            this.sendMessage(active);
+            clock = (setInterval(this.receiveFakeMessage(active)), 3000)
+        },
+        sendMessage(active){
             
+            this.contacts[active].messages.push(
+                {
+                    date: '10/01/2020 15:50:00',
+                    text: this.newMessage,
+                    status: 'sent'
+                },
+            )
+            this.newMessage = "";
+        },
+        receiveFakeMessage(active){
+
+            console.log("funziona")
+            this.contacts[active].messages.push(
+                {
+                    date: '10/01/2020 15:50:00',
+                    text: "okay",
+                    status: 'received'
+                },
+
+            )
+
+            console.log(this.contacts)
         }
     }
+
 })

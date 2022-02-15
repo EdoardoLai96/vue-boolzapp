@@ -10,9 +10,6 @@
 </head>
 <body>
     <div id="app">
-            <div class="prova_uno">
-
-            </div>
             <div class="container">
 
                 <!-- Container di sinistra  -->
@@ -50,20 +47,24 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" name="" id="search_chat"> 
                         </div>
+                        <div class="archive_container">
+                            <i class="fa-solid fa-box-archive"></i>
+                            <span>Archived</span>
+                        </div>
 
                         <!-- Elenco chat  -->
                         <div class="chat_list_container">
 
                             <!-- prima chat  -->
 
-                            <div v-for="(contact, index) in contacts" class="card chat_item">
-                                <div class="user_box">
+                            <div v-for="(contact, index) in contacts" class="card chat_item"  :class="index == active ? 'active' : '' ">
+                                <div class="user_box" @click="makeActive(index)">
                                     <div class="img_box">
-                                        <img v-bind:src="'./img/avatar' + contacts[index].avatar + '.jpg'" />
+                                        <img v-bind:src="'./img/avatar' + contact.avatar + '.jpg'" />
                                     </div>
                                     <div class="text_box">
-                                        <p>{{contacts[index].name}}</p>
-                                        <p>{{contacts[index].messages[2].text}}</p>
+                                        <p>{{contact.name}}</p>
+                                        <p>{{contact.messages[2].text}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -77,11 +78,11 @@
                     <div class="container-dx_top card">
                         <div class="user_box">
                             <div class="img_box">
-                                <img src="./img/avatar_io.jpg" alt="">
+                               <img v-bind:src="'./img/avatar' + contacts[active].avatar + '.jpg'" />
                             </div>
                             <div class="text_box">
-                                <p>Nome Utente</p>
-                                <p>Messaggio</p>
+                                <p :class="contacts[active].name">{{contacts[active].name}}</p>
+                                <p>Ultimo accesso</p>
                             </div>
                         </div>
                             <div class="icon_box">
@@ -92,15 +93,15 @@
     
 
                     </div>
-                    <!-- Container di detra spazio della chat principale-->
+                    <!-- Container di destra spazio della chat principale-->
                     <div class="container-dx_main">
-                            <p v-for="(contact , index) in contacts" class="msg user">{{contacts[index].messages.text}}</p>
+                            <p v-for="(message , index) in contacts[active].messages" class="msg" :class = "message.status == 'sent' ? 'msg-user' : '' ">{{message.text}}</p>
                     </div>
 
                     <!-- Container di destra chat bar e input dove scrivere il testo  -->
                     <div class="container-dx_bottom">
                         <i class="fa-regular fa-face-smile"></i>
-                        <input type="text">
+                        <input  @keyup.enter="onKeyEnterUp(active)"  type="text" v-model="newMessage">
                         <i class="fa-solid fa-microphone"></i> 
                     </div>
  
