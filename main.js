@@ -1,9 +1,11 @@
 const app = new Vue({
     el: '#app',
     data :{
-        clock : "",
+        today: dayjs().format("MM/DD/YYYY"),
+        now: dayjs().format("HH:mm"),
         active : 0,
         newMessage: "",
+        searchedName: "",
         contacts: [
             {
                 name: 'Michele',
@@ -11,39 +13,45 @@ const app = new Vue({
                 visible: true,
                 messages:[
                     {
-                        date: '10/01/2020 15:30:55',
+                        date: '10/01/2020',
+                        time: '15:30',
                         text: 'Hai portato a spasso il cane?',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
+                        date: '10/01/2020',
+                        time : '15:50',
                         text: 'Ricordati di dargli da mangiare',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 16:15:22',
+                        date: '10/01/2020',
+                        time : '16:15',
                         text: 'Tutto fatto!',
                         status: 'received'                    
                     }
                 ]
             },
             {
-                name: 'Fabio',
+                name: 'Marco',
                 avatar: '_2',
                 visible: true,
                 messages:[
                     {
                         date: '20/03/2020 16:30:00',
+                        time : '16:30',
                         text: 'Ciao come stai?',
                         status: 'sent'
                     },
                     {
-                        date: '20/03/2020 16:30:55',
+                        date: '20/03/2020',
+                        time : '16:31',
                         text: 'Bene grazie! Stasera ci vediamo?',
                         status: 'received'
                     },
                     {
-                        date: '20/03/2020 16:35:00',
+                        date: '20/03/2020',
+                        time : '16:35',
                         text: 'Mi piacerebbe ma devo andare a fare la spesa.',
                         status: 'sent'                    
                     }
@@ -55,39 +63,45 @@ const app = new Vue({
                 visible: true,
                 messages:[
                     {
-                        date: '28/03/2020 10:10:40',
+                        date: '28/03/2020',
+                        time: '10:10',
                         text: 'La Marianna va in campagna',
                         status: 'received'
                     },
                     {
-                        date: '28/03/2020 10:20:10',
+                        date: '28/03/2020 10:20',
+                        time: '10:20',
                         text: 'Sicuro di non aver sbagliato chat?',
                         status: 'sent'
                     },
                     {
-                        date: '28/03/2020 16:15:22',
+                        date: '28/03/2020',
+                        time: '16:15',
                         text: 'Ah scusa!',
                         status: 'received'
                     }
                 ]
             },
             {
-                name: 'Luisa',
+                name: 'Martina',
                 avatar: '_4',
                 visible: true,
                 messages:[
                     {
-                        date: '10/01/2020 15:30:55',
+                        date: '10/01/2020',
+                        time: '15:30',
                         text: 'Lo sai che ha aperto una nuova pizzeria?',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
+                        date: '10/01/2020',
+                        time: '15:50',
                         text: 'Si, ma preferirei andare al cinema',
                         status: 'received'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
+                        date: '10/01/2020',
+                        time: '15:52',
                         text: 'Va bene, alla prossima allora!',
                         status: 'sent'
                     }
@@ -97,8 +111,10 @@ const app = new Vue({
     },
     methods: {
         makeActive(index){
+        prova = (this.contacts[this.active].messages.length)
+        console.log(prova);
+
             this.active = index
-            console.log(this.active)
         },
         onKeyEnterUp(active){
             this.sendMessage(active);
@@ -107,7 +123,8 @@ const app = new Vue({
         sendMessage(active){
             this.contacts[active].messages.push(
                 {
-                    date: '10/01/2020 15:50:00',
+                    date: dayjs().format("MM/DD/YYYY"),
+                    time: dayjs().format("HH:mm"),
                     text: this.newMessage,
                     status: 'sent'
                 },
@@ -115,16 +132,50 @@ const app = new Vue({
             this.newMessage = "";
         },
         receiveFakeMessage(){
-            console.log("funziona")
             this.contacts[this.active].messages.push(
                 {
-                    date: '10/01/2020 15:50:00',
+                    date: dayjs().format("MM/DD/YYYY"),
+                    time: dayjs().format("HH:mm"),
                     text: "okay",
                     status: 'received'
                 },
             )
-            console.log(this.contacts)
+        },
+        filterSearch(){
+            // nome_ricercato = [];
+            // nome_ricercato.push(this.searchedName);
+            // console.log(nome_ricercato)
+
+            let searched_name_lower = this.searchedName.toLowerCase()
+
+
+            this.contacts.forEach((contact, index) => {
+
+                let name_lower = contact.name.toLowerCase();
+
+                // let name_upper = contact.name.toUpperCase();
+                // let name_regular = contact.name;
+
+                if(!name_lower.includes(searched_name_lower)){
+                    contact.visible = false;
+                }else if(name_lower.includes(searched_name_lower)){
+                    contact.visible = true;
+                }
+            });
         }
     }
 
 })
+
+
+
+// Come fa a prendermi tutti i nomi se non ho specificato l'indice?
+
+
+
+
+
+
+// Perchè funziona con l'operatore logico "e" e  non "o"
+
+// perchè sta funzionando solo con l'esclusione?

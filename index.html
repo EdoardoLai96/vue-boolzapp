@@ -23,6 +23,7 @@
                             </div>
                             <div class="text_box">
                                 <p>Nome Utente</p>
+                                <p>Online</p>
                             </div>
                         </div>
                         <div class="icon_box">
@@ -45,7 +46,7 @@
                     <div class="container-sx_main">
                         <div class="input_container">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="" id="search_chat"> 
+                            <input type="text" @keyup="filterSearch"  v-model="searchedName" name="" id="search_chat"> 
                         </div>
                         <div class="archive_container">
                             <i class="fa-solid fa-box-archive"></i>
@@ -57,7 +58,7 @@
 
                             <!-- prima chat  -->
 
-                            <div v-for="(contact, index) in contacts" class="card chat_item"  :class="index == active ? 'active' : '' ">
+                            <div v-if="contacts[index].visible == true" v-for="(contact, index) in contacts" class="card chat_item"  :class="index == active ? 'active' : '' ">
                                 <div class="user_box" @click="makeActive(index)">
                                     <div class="img_box">
                                         <img v-bind:src="'./img/avatar' + contact.avatar + '.jpg'" />
@@ -83,7 +84,7 @@
                             </div>
                             <div class="text_box">
                                 <p :class="contacts[active].name">{{contacts[active].name}}</p>
-                                <p>Ultimo accesso</p>
+                                <p>{{this.today}} alle {{this.now}}</p>
                             </div>
                         </div>
                             <div class="icon_box">
@@ -96,7 +97,10 @@
                     </div>
                     <!-- Container di destra spazio della chat principale-->
                     <div class="container-dx_main">
-                            <p v-for="(message , index) in contacts[active].messages" class="msg" :class = "message.status == 'sent' ? 'msg-user' : '' ">{{message.text}}</p>
+                        <div class="msg_container "  v-for="(message , index) in contacts[active].messages" :class = "message.status == 'sent' ? 'ms_auto' : 'me_auto' ">
+                            <p class="msg" :class = "message.status == 'sent' ? 'color-user' : '' ">{{message.text}}</p>
+                             <p class="date_container"> {{message.time}}</p>
+                        </div>
                     </div>
 
                     <!-- Container di destra chat bar e input dove scrivere il testo  -->
@@ -109,6 +113,7 @@
                 </div>
             </div>
     </div>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="main.js"></script>
 </body>

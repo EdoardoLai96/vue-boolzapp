@@ -24,6 +24,7 @@ ul{
     height: 100vh;
     background-image: linear-gradient(180deg, #479388 20%, #EAEAEA 20%);
     display: flex;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* CARD  */
@@ -268,26 +269,46 @@ color:rgb(105, 105, 105);
     overflow-y: scroll;
 }
 
-.msg{
-    background-color: ghostwhite;
+.msg_container{
+    position: relative;
+    width: min-content;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
 }
 
+.date_container{
+    right: 10px;
+    bottom: 1px;
+    font-size: 10px;
+    color: gray;
+    white-space: nowrap;
+    text-align: end;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+
 .msg{
-    padding: 20px 30px;
+    padding-top: 7px;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-bottom: 3px;
     width: min-content;
     white-space: nowrap;
-    border-radius: 12px;
-    margin-bottom: 10px;
 }
 
-.msg-user{
-    background-color: var(--user-color);
+.ms_auto{
     margin-left: auto;
+    background-color: var(--user-color);
 
 }
-.msg-com{
-    margin-right: auto;
 
+.color-user{
+}
+.me_auto{
+    margin-right: auto;
+    background-color: white;
 }
 
 /* barra con input per la chat e emoji / microfono */
