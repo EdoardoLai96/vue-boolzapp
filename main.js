@@ -3,7 +3,9 @@ const app = new Vue({
     data :{
         today: dayjs().format("MM/DD/YYYY"),
         now: dayjs().format("HH:mm"),
+        recording : false,
         active : 0,
+        emoji: false,
         newMessage: "",
         searchedName: "",
         contacts: [
@@ -112,17 +114,17 @@ const app = new Vue({
     methods: {
         makeActive(index){
         prova = (this.contacts[this.active].messages.length)
-        console.log(prova);
 
             this.active = index
         },
         onKeyEnterUp(active){
-            this.sendMessage(active);
-            setTimeout((this.receiveFakeMessage), 3000);
+            if(this.newMessage != "" && this.newMessage.trim() != ""){
+
+                this.sendMessage(active);
+                setTimeout((this.receiveFakeMessage), 3000);
+            }
         },
         sendMessage(active){
-            if(this.newMessage != "" && this.newMessage.trim()){
-
                 this.contacts[active].messages.push(
                     {
                         date: dayjs().format("MM/DD/YYYY"),
@@ -131,12 +133,9 @@ const app = new Vue({
                         status: 'sent'
                     },
                     )
-            }
             this.newMessage = "";
         },
         receiveFakeMessage(){
-            if(this.newMessage != ""){
-
                 this.contacts[this.active].messages.push(
                     {
                         date: dayjs().format("MM/DD/YYYY"),
@@ -145,7 +144,6 @@ const app = new Vue({
                         status: 'received'
                     },
                     )
-                }
                 },
         filterSearch(){
             // nome_ricercato = [];
@@ -168,7 +166,15 @@ const app = new Vue({
                     contact.visible = true;
                 }
             });
-        }
+        },
+        recordingOn(){
+        this.recording = !this.recording
+        console.log(this.recording)
+        },
+        emojiOn(){
+        this.emoji = !this.emoji
+        console.log(this.emoji)
+        },
     }
 
 })

@@ -333,14 +333,54 @@ color:rgb(105, 105, 105);
 
 .container-dx_bottom i{
     font-size: 1.2rem;
+    transition: 0.3s;
     color: grey;
 }
 
+.fa-face-smile{
+    position: relative;
+}
 
+
+.emoji_container_hidden{
+}
+
+.emoji_container_visible{
+    position: absolute;
+    background-color: cornflowerblue;
+    top: -65px;
+    height: 26px;
+    width: min-content;
+    border-radius: -2%;
+    border-radius: 13px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px white;
+    transition: 0.3s;
+}
+
+.emoji_container i{
+    margin: 0 5px;
+    color: rgb(255, 217, 46);
+}
+
+.emoji_container i.hidden{
+    display: none;
+}
 
 /* Js  */
 
 .active{
 background-color: rgb(245, 245, 245);
 
+}
+
+.red.fa-microphone{
+    color: red;
+    transition: 0.3s;
+    background-color: white;
+    padding: 8px 10px;
+    border-radius: 50%;
 }

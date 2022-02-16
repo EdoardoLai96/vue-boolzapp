@@ -105,9 +105,21 @@
 
                     <!-- Container di destra chat bar e input dove scrivere il testo  -->
                     <div class="container-dx_bottom">
-                        <i class="fa-regular fa-face-smile"></i>
+                        <i @click="emojiOn" class="fa-regular fa-face-smile">
+                            <div  :class="emoji == true? 'emoji_container_visible' : '' " class="emoji_container">
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-angry"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-flushed"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-frown"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-kiss"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-grin"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-grin-beam-sweat"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-grin-tongue"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-kiss-wink-heart"></i>
+                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-sad-tear"></i>
+                            </div>
+                        </i>
                         <input  @keyup.enter="onKeyEnterUp(active)"  type="text" v-model="newMessage">
-                        <i class="fa-solid fa-microphone"></i> 
+                        <i @click="recordingOn" class="fa-solid fa-microphone" :class="recording == true? 'red' : '' "></i> 
                     </div>
  
                 </div>
