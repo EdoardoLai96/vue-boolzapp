@@ -97,16 +97,14 @@ const app = new Vue({
     },
     methods: {
         makeActive(index){
-            console.log(this.active)
             this.active = index
             console.log(this.active)
         },
         onKeyEnterUp(active){
             this.sendMessage(active);
-            clock = (setInterval(this.receiveFakeMessage(active)), 3000)
+            setTimeout((this.receiveFakeMessage), 3000);
         },
         sendMessage(active){
-            
             this.contacts[active].messages.push(
                 {
                     date: '10/01/2020 15:50:00',
@@ -116,18 +114,15 @@ const app = new Vue({
             )
             this.newMessage = "";
         },
-        receiveFakeMessage(active){
-
+        receiveFakeMessage(){
             console.log("funziona")
-            this.contacts[active].messages.push(
+            this.contacts[this.active].messages.push(
                 {
                     date: '10/01/2020 15:50:00',
                     text: "okay",
                     status: 'received'
                 },
-
             )
-
             console.log(this.contacts)
         }
     }
