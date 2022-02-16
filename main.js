@@ -121,26 +121,32 @@ const app = new Vue({
             setTimeout((this.receiveFakeMessage), 3000);
         },
         sendMessage(active){
-            this.contacts[active].messages.push(
-                {
-                    date: dayjs().format("MM/DD/YYYY"),
-                    time: dayjs().format("HH:mm"),
-                    text: this.newMessage,
-                    status: 'sent'
-                },
-            )
+            if(this.newMessage != "" && this.newMessage.trim()){
+
+                this.contacts[active].messages.push(
+                    {
+                        date: dayjs().format("MM/DD/YYYY"),
+                        time: dayjs().format("HH:mm"),
+                        text: this.newMessage.trim(),
+                        status: 'sent'
+                    },
+                    )
+            }
             this.newMessage = "";
         },
         receiveFakeMessage(){
-            this.contacts[this.active].messages.push(
-                {
-                    date: dayjs().format("MM/DD/YYYY"),
-                    time: dayjs().format("HH:mm"),
-                    text: "okay",
-                    status: 'received'
+            if(this.newMessage != ""){
+
+                this.contacts[this.active].messages.push(
+                    {
+                        date: dayjs().format("MM/DD/YYYY"),
+                        time: dayjs().format("HH:mm"),
+                        text: "okay",
+                        status: 'received'
+                    },
+                    )
+                }
                 },
-            )
-        },
         filterSearch(){
             // nome_ricercato = [];
             // nome_ricercato.push(this.searchedName);
