@@ -160,7 +160,7 @@ const app = new Vue({
                 // let name_upper = contact.name.toUpperCase();
                 // let name_regular = contact.name;
 
-                if(!name_lower.includes(searched_name_lower)){
+                if(!name_lower.startsWith(searched_name_lower)){
                     contact.visible = false;
                 }else if(name_lower.includes(searched_name_lower)){
                     contact.visible = true;
