@@ -265,8 +265,10 @@ const app = new Vue({
         getEmoji(event){
             this.newMessage += event.target.innerHTML.trim()
             event.preventDefault();
-       }
-    }
+       },
+
+    },
+    
 
 })
 

@@ -41,8 +41,8 @@
                 <div class="container-sx_header_bottom">
                     <i class="fa-solid fa-bell-slash"></i>
                     <div class="notification_box">
-                        <p>Ricevi notifiche di nuovi messaggi</p>
-                        <a href="">Attiva notifiche desktop </a>
+                        <p>Turn on to get notifications</p>
+                        <a href="">Turn on desktop alerts </a>
                     </div>
                 </div>
 
@@ -65,10 +65,10 @@
                         <div v-if="contacts[index].visible == true" v-for="(contact, index) in contacts"
                             class="card chat_item" :class="index == active ? 'active' : '' ">
                             <div class="user_box" @click="makeActive(index)">
-                                <div class="img_box">
+                                <div class="img_box" style="background-color: transparent;">
                                     <img v-bind:src="'./img/avatar' + contact.avatar + '.jpg'" />
                                 </div>
-                                <div class="text_box">
+                                <div class="text_box" style="background-color: transparent;">
                                     <p>{{contact.name}}</p>
                                     <p>{{contact.messages[0].text}}</p>
                                 </div>
@@ -112,7 +112,7 @@
                 <!-- Container di destra chat bar e input dove scrivere il testo  -->
                 <div class="container-dx_bottom">
                     <span class="emoji_toggler" @click="emojisOn">
-                        &#128514;
+                        <i class="fa-regular fa-face-smile"></i>
                         <span :class="emojiBoxVisible == true? 'emoji_container_visible' : 'emoji_container_hidden' "
                             class="emoji_container">
                             <span v-for="(emoji ,index) in emojis" :key="index" class="emoji" ref="prova"
@@ -121,10 +121,9 @@
                             </span>
                         </span>
                     </span>
-                    <textarea @keyup.enter=" onKeyEnterUp(active)" id="mytextarea" name="mytextarea"
-                        v-model="newMessage">
+                    <input @keyup.enter=" onKeyEnterUp(active)" id="mytextarea" name="mytextarea" v-model="newMessage">
 
-                                </textarea>
+                    </input>
                     <i @click="toggleRecording" class="fa-solid fa-microphone"
                         :class="isRecording == true? 'recordingOn' : 'recordingOff' "></i>
                 </div>
