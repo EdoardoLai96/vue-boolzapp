@@ -1,132 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzap</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <div id="app">
-            <div class="container">
+        <div class="container">
 
-                <!-- Container di sinistra  -->
+            <!-- Container di sinistra  -->
 
-                <div class="container_sx">
-                    <!-- Container di sinistra parte alta spazio utente  -->
-                    <div class="container-sx_header_top card">
-                        <div class="user_box">
-                            <div class="img_box">
-                                <img src="./img/avatar_io.jpg" alt="">
-                            </div>
-                            <div class="text_box">
-                                <p>Edoardo</p>
-                                <p>Online</p>
-                            </div>
+            <div class="container_sx">
+                <!-- Container di sinistra parte alta spazio utente  -->
+                <div class="container-sx_header_top card">
+                    <div class="user_box">
+                        <div class="img_box">
+                            <img src="./img/avatar_io.jpg" alt="">
                         </div>
-                        <div class="icon_box">
-                            <i class="fa-solid fa-circle-notch"></i>
-                            <i class="fa-solid fa-message"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        <div class="text_box">
+                            <p>Edoardo</p>
+                            <p>Online</p>
                         </div>
                     </div>
+                    <div class="icon_box">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
 
-                    <!-- Container di sinistra parte alta spazio notifiche  -->
-                    <div class="container-sx_header_bottom">
-                            <i class="fa-solid fa-bell-slash"></i>
-                            <div class="notification_box">
-                                <p>Ricevi notifiche di nuovi messaggi</p>
-                                <a href="">Attiva notifiche desktop </a> 
-                            </div>
+                <!-- Container di sinistra parte alta spazio notifiche  -->
+                <div class="container-sx_header_bottom">
+                    <i class="fa-solid fa-bell-slash"></i>
+                    <div class="notification_box">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="">Attiva notifiche desktop </a>
+                    </div>
+                </div>
+
+                <!-- Contaienr sinistra spazio elenco chat  -->
+                <div class="container-sx_main">
+                    <div class="input_container">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" @keyup="filterSearch" v-model="searchedName" name="" id="search_chat">
+                    </div>
+                    <div class="archive_container">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Archived</span>
                     </div>
 
-                    <!-- Contaienr sinistra spazio elenco chat  -->
-                    <div class="container-sx_main">
-                        <div class="input_container">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" @keyup="filterSearch"  v-model="searchedName" name="" id="search_chat"> 
-                        </div>
-                        <div class="archive_container">
-                            <i class="fa-solid fa-box-archive"></i>
-                            <span>Archived</span>
-                        </div>
+                    <!-- Elenco chat  -->
+                    <div class="chat_list_container">
 
-                        <!-- Elenco chat  -->
-                        <div class="chat_list_container">
+                        <!-- prima chat  -->
 
-                            <!-- prima chat  -->
-
-                            <div v-if="contacts[index].visible == true" v-for="(contact, index) in contacts" class="card chat_item"  :class="index == active ? 'active' : '' ">
-                                <div class="user_box" @click="makeActive(index)">
-                                    <div class="img_box">
-                                        <img v-bind:src="'./img/avatar' + contact.avatar + '.jpg'" />
-                                    </div>
-                                    <div class="text_box">
-                                        <p>{{contact.name}}</p>
-                                        <p>{{contact.messages[2].text}}</p>
-                                    </div>
+                        <div v-if="contacts[index].visible == true" v-for="(contact, index) in contacts"
+                            class="card chat_item" :class="index == active ? 'active' : '' ">
+                            <div class="user_box" @click="makeActive(index)">
+                                <div class="img_box">
+                                    <img v-bind:src="'./img/avatar' + contact.avatar + '.jpg'" />
+                                </div>
+                                <div class="text_box">
+                                    <p>{{contact.name}}</p>
+                                    <p>{{contact.messages[0].text}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-
-                <!-- Container di destra  -->
-                <div class="container_dx">
-                    <!-- Container di destra intestazione  -->
-                    <div class="container-dx_top card">
-                        <div class="user_box">
-                            <div class="img_box">
-                               <img v-bind:src="'./img/avatar' + contacts[active].avatar + '.jpg'" />
-                            </div>
-                            <div class="text_box">
-                                <p :class="contacts[active].name">{{contacts[active].name}}</p>
-                                <p>{{this.today}} alle {{this.now}}</p>
-                            </div>
-                        </div>
-                            <div class="icon_box">
-                                <i class="fa-solid fa-solid fa-magnifying-glass"></i>
-                                <i class="fa-solid fa-message"></i>
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-    
-
-                    </div>
-                    <!-- Container di destra spazio della chat principale-->
-                    <div class="container-dx_main">
-                        <div class="msg_container "  v-for="(message , index) in contacts[active].messages" :class = "message.status == 'sent' ? 'ms_auto' : 'me_auto' ">
-                            <p class="msg" :class = "message.status == 'sent' ? 'color-user' : '' ">{{message.text}}</p>
-                             <p class="date_container"> {{message.time}}</p>
-                        </div>
-                    </div>
-
-                    <!-- Container di destra chat bar e input dove scrivere il testo  -->
-                    <div class="container-dx_bottom">
-                        <i @click="emojiOn" class="fa-regular fa-face-smile">
-                            <div  :class="emoji == true? 'emoji_container_visible' : '' " class="emoji_container">
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-angry"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-flushed"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-frown"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-kiss"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-grin"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-grin-beam-sweat"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-grin-tongue"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-kiss-wink-heart"></i>
-                                <i :class="emoji == true? '' : 'hidden' "class="fa-solid fa-face-sad-tear"></i>
-                            </div>
-                        </i>
-                        <input  @keyup.enter="onKeyEnterUp(active)"  type="text" v-model="newMessage">
-                        <i @click="recordingOn" class="fa-solid fa-microphone" :class="recording == true? 'red' : '' "></i> 
-                    </div>
- 
-                </div>
             </div>
+
+
+            <!-- Container di destra  -->
+            <div class="container_dx">
+                <!-- Container di destra intestazione  -->
+                <div class="container-dx_top card">
+                    <div class="user_box">
+                        <div class="img_box">
+                            <img v-bind:src="'./img/avatar' + contacts[active].avatar + '.jpg'" />
+                        </div>
+                        <div class="text_box">
+                            <p :class="contacts[active].name">{{contacts[active].name}} </p>
+                            <p>{{this.today}} alle {{this.now}}</p>
+                        </div>
+                    </div>
+                    <div class="icon_box">
+                        <i class="fa-solid fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+
+
+                </div>
+                <!-- Container di destra spazio della chat principale-->
+                <div class="container-dx_main">
+                    <div class="msg_container " v-for="(message , index) in contacts[active].messages"
+                        :class="message.status == 'sent' ? 'ms_auto' : 'me_auto' ">
+                        <p class="msg" :class="message.status == 'sent' ? 'color-user' : '' ">{{message.text}}</p>
+                        <p class="date_container"> {{message.time}}</p>
+                    </div>
+                </div>
+
+                <!-- Container di destra chat bar e input dove scrivere il testo  -->
+                <div class="container-dx_bottom">
+                    <span class="emoji_toggler" @click="emojisOn">
+                        &#128514;
+                        <span :class="emojiBoxVisible == true? 'emoji_container_visible' : 'emoji_container_hidden' "
+                            class="emoji_container">
+                            <span v-for="(emoji ,index) in emojis" :key="index" class="emoji" ref="prova"
+                                v-on:click="getEmoji">
+                                {{emoji.character}}
+                            </span>
+                        </span>
+                    </span>
+                    <textarea @keyup.enter=" onKeyEnterUp(active)" id="mytextarea" name="mytextarea"
+                        v-model="newMessage">
+
+                                </textarea>
+                    <i @click="toggleRecording" class="fa-solid fa-microphone"
+                        :class="isRecording == true? 'recordingOn' : 'recordingOff' "></i>
+                </div>
+
+            </div>
+        </div>
     </div>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

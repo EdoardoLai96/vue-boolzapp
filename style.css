@@ -8,6 +8,10 @@ ul{
     list-style: none;
 }
 
+html{
+    color-scheme: dark;
+}
+
 :root{
     --main-color: #fff;
     --secondary-color: #EAEAEA;
@@ -15,6 +19,11 @@ ul{
     --notification-color: #87ccf5;
     --header-color: #479388;
     --input_bar-color: #F3EEEA;
+    --main-text:color: #000;
+    --secondary-text:color: gray;
+    /* --msg-sent: #265B4C; */
+    /* --msg-received: #265B4C; */
+
 }
 
 
@@ -22,7 +31,7 @@ ul{
 
 #app{
     height: 100vh;
-    background-image: linear-gradient(180deg, #479388 20%, #EAEAEA 20%);
+    background-image: linear-gradient(180deg, #479388 20%, var(--secondary-color) 20%);
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -164,8 +173,9 @@ color:rgb(105, 105, 105);
 }
 
 .container-sx_main{
-    height: 78%;
+    height: 81%;
     width: 100%;
+    background-color: var(--secondary-color);
 }
 
 /* List delle chat  */
@@ -177,14 +187,13 @@ color:rgb(105, 105, 105);
     display: flex;
     align-items: center;
     padding: 2px;
-    background-color: white;
+    background-color: var(--main-color);
     border: 10px solid var(--secondary-color);
     position: relative;
 }
 
 .fa-magnifying-glass{
     text-align: center;
-    background-color: white;
     vertical-align: middle;
     color: gray;
 }
@@ -214,7 +223,7 @@ color:rgb(105, 105, 105);
 }
 
 .chat_list_container{
-    background-color: white;
+    background-color: var(--secondary-color);
     flex-direction: column;
     align-items: flex-start;
 }
@@ -226,7 +235,6 @@ color:rgb(105, 105, 105);
 }
 .card.chat_item :hover{
     cursor: pointer;
-    background-color: rgb(245, 245, 245);
 }
 
 .card.chat_item .text_box{
@@ -302,13 +310,13 @@ color:rgb(105, 105, 105);
 
 .ms_auto{
     margin-left: auto;
-    background-color: var(--user-color);
+    background-color: var(--msg-sent);
 
 }
 
 .me_auto{
     margin-right: auto;
-    background-color: white;
+    background-color: var(--msg-received);
 }
 
 /* barra con input per la chat e emoji / microfono */
@@ -326,61 +334,151 @@ color:rgb(105, 105, 105);
     background-color: var(--input_bar-color);
 }
 
-.container-dx_bottom input{
+.container-dx_bottom textarea{
     width: 80%;
     height: 80%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding-top: 0.4rem;
+    padding-left: 0.2rem;
 }
 
-.container-dx_bottom i{
-    font-size: 1.2rem;
-    transition: 0.3s;
-    color: grey;
-}
 
-.fa-face-smile{
-    position: relative;
-}
 
 
 .emoji_container_hidden{
+    position: absolute;
+    top: -20px;
+    display: flex;
+    visibility: hidden;
+    transition: 0.1s;
 }
 
 .emoji_container_visible{
     position: absolute;
-    background-color: cornflowerblue;
+    background-color: rgb(168, 168, 168);
     top: -65px;
-    height: 26px;
     width: min-content;
     border-radius: -2%;
     border-radius: 13px;
-    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid 1px white;
     transition: 0.3s;
+    padding:  5px;
 }
 
-.emoji_container i{
-    margin: 0 5px;
-    color: rgb(255, 217, 46);
+.emoji_toggler{
+    position: relative;
+    font-size: 1.2rem;
+    color: grey;
+    cursor: pointer;
 }
 
-.emoji_container i.hidden{
-    display: none;
+.emoji_container span{
+    padding: 2.5px 5px;
+    flex-basis: calc(100% / 2);
+    border-radius: 50%;
 }
 
-/* Js  */
+.emoji_container span:hover{
+    background-color: rgba(105, 105, 105, 0.6);
+    transition: 0.3s;
+    
+}
+
+
+/* Javascript related  */
 
 .active{
-background-color: rgb(245, 245, 245);
+background-color: rgba(105, 105, 105, 0.2);
+
 
 }
 
-.red.fa-microphone{
+.recordingOn.fa-microphone{
     color: red;
     transition: 0.3s;
     background-color: white;
     padding: 8px 10px;
+    border: 2px solid red;
+    border-radius: 50%;
+    animation-name: glowing;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+}
+
+.recordingOff.fa-microphone{
+    color: black;
+    transition: 0.3s;
     border-radius: 50%;
 }
+
+@keyframes glowing {
+    0%   {color: black;}
+    50%  {color: red;}
+    100% {color: black;}  }
+
+
+    /* medias */
+
+ @media (prefers-color-scheme: dark) {
+     :root{
+        --main-color: #2E3941; 
+        --secondary-color: #222C32;
+        --user-color: #222C32;
+        --notification-color: #2E3941;
+        --header-color: #479388;
+        --input_bar-color: #2E3941;
+        --secondary-text:color: #89969F;
+        --msg-sent: #265B4C;
+        --msg-received: #2E3941;
+
+     }
+     .container-dx_main{
+        background-image: url(./img/whatsapp_dark.webp);
+
+     }
+
+     .container{
+         border: 1px solid #2E3941;
+     }
+     .card.chat_item :hover{
+         background-color: rgba(46, 57, 65, 0.5);
+    }
+    
+     .card.chat_item .text_box:hover{
+         background-color: rgba(46, 57, 65, 0.5);
+    }
+
+    .emoji_container_visible{
+        background-color: var(--main-color);
+    }
+
+
+    .container-dx_bottom i.fa-microphone{
+        color: white;
+    }
+    
+}
+
+@media (prefers-color-scheme: light) {
+    :root{
+        --main-color: #fff;
+        --secondary-color: #EAEAEA;
+        --user-color: #DDF8C0;
+        --notification-color: #87ccf5;
+        --header-color: #479388;
+        --input_bar-color: #F3EEEA;
+        --main-text:color: #000;
+        --secondary-text:color: gray;
+        /* --msg-sent: #265B4C; */
+        /* --msg-received: #265B4C; */
+    
+    }
+    } 
+
+/* .day   { background-color: var(--main-color); color: black; }
+.night { background: #333; color: white; } */ 
